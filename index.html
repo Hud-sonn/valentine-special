@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Valentine's Day Special 💖</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Crimson Text', serif;
+            background: linear-gradient(135deg, #ffeef8 0%, #ffe4f1 25%, #ffd6e8 50%, #ffc9e0 75%, #ffb8d9 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Animated background hearts */
+        .heart-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .heart {
+            position: absolute;
+            font-size: 20px;
+            opacity: 0;
+            animation: float-up 8s infinite ease-in;
+        }
+
+        @keyframes float-up {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.6;
+            }
+            90% {
+                opacity: 0.6;
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        .container {
+            position: relative;
+            z-index: 1;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.25);
+            backdrop-filter: blur(20px);
+            border-radius: 30px;
+            padding: 3rem 2.5rem;
+            box-shadow: 0 8px 32px rgba(255, 105, 180, 0.2),
+                        0 0 80px rgba(255, 182, 193, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            max-width: 500px;
+            width: 100%;
+            animation: fadeIn 1s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            background: linear-gradient(135deg, #ff6b9d 0%, #c44569 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-align: center;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #c44569;
+            font-size: 1.125rem;
+            margin-bottom: 2rem;
+            font-style: italic;
+        }
+
+        .input-group {
+            margin-bottom: 1.5rem;
+        }
+
+        label {
+            display: block;
+            color: #a93f55;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            font-size: 1rem;
+        }
+
+        input {
+            width: 100%;
+            padding: 1rem 1.25rem;
+            border: 2px solid rgba(255, 105, 180, 0.3);
+            border-radius: 15px;
+            font-size: 1.125rem;
+            background: rgba(255, 255, 255, 0.5);
+            color: #8b2e4a;
+            font-family: 'Crimson Text', serif;
+            transition: all 0.3s ease;
+            outline: none;
+        }
+
+        input:focus {
+            border-color: #ff6b9d;
+            background: rgba(255, 255, 255, 0.7);
+            box-shadow: 0 0 0 4px rgba(255, 105, 180, 0.1);
+        }
+
+        input::placeholder {
+            color: #d4a5b0;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 1.25rem;
+            border: none;
+            border-radius: 15px;
+            font-size: 1.25rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Crimson Text', serif;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #ff6b9d 0%, #c44569 100%);
+            color: white;
+            box-shadow: 0 4px 15px rgba(255, 107, 157, 0.4);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 107, 157, 0.5);
+        }
+
+        .btn-primary:active {
+            transform: translateY(0);
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .btn:active::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .links-container {
+            display: none;
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 2px dashed rgba(255, 105, 180, 0.3);
+            animation: slideDown 0.5s ease-out;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                max-height: 0;
+            }
+            to {
+                opacity: 1;
+                max-height: 500px;
+            }
+        }
+
+        .link-box {
+            background: rgba(255, 255, 255, 0.4);
+            border-radius: 12px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border: 1px solid rgba(255, 105, 180, 0.2);
+        }
+
+        .link-label {
+            font-size: 0.875rem;
+            color: #a93f55;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .link-text {
+            background: rgba(255, 255, 255, 0.6);
+            padding: 0.75rem;
+            border-radius: 8px;
+            font-size: 0.875rem;
+            color: #8b2e4a;
+            word-break: break-all;
+            border: 1px solid rgba(255, 105, 180, 0.2);
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .link-text:hover {
+            background: rgba(255, 255, 255, 0.8);
+            border-color: #ff6b9d;
+        }
+
+        .copy-btn {
+            margin-top: 0.5rem;
+            padding: 0.5rem;
+            background: linear-gradient(135deg, #ff6b9d 0%, #c44569 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.875rem;
+            width: 100%;
+            transition: all 0.2s ease;
+            font-family: 'Crimson Text', serif;
+        }
+
+        .copy-btn:hover {
+            transform: scale(1.02);
+        }
+
+        .copy-btn.copied {
+            background: linear-gradient(135deg, #66bb6a 0%, #43a047 100%);
+        }
+
+        @media (max-width: 640px) {
+            h1 {
+                font-size: 2.25rem;
+            }
+            .card {
+                padding: 2rem 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Floating hearts background -->
+    <div class="heart-bg" id="heartBg"></div>
+
+    <div class="container">
+        <div class="card">
+            <h1>Valentine's Day 💖</h1>
+            <p class="subtitle">Create your special Valentine's link</p>
+            
+            <form id="generateForm">
+                <div class="input-group">
+                    <label for="yourName">Your Name</label>
+                    <input type="text" id="yourName" placeholder="Enter your name" required>
+                </div>
+                
+                <div class="input-group">
+                    <label for="partnerName">Your Valentine's Name</label>
+                    <input type="text" id="partnerName" placeholder="Enter their name" required>
+                </div>
+                
+                <button type="submit" class="btn btn-primary">
+                    Generate Links ✨
+                </button>
+            </form>
+
+            <div class="links-container" id="linksContainer">
+                <div class="link-box">
+                    <div class="link-label">
+                        💌 Valentine Link (Send this to them)
+                    </div>
+                    <div class="link-text" id="valentineLink"></div>
+                    <button class="copy-btn" onclick="copyLink('valentine')">Copy Link</button>
+                </div>
+                
+                <div class="link-box">
+                    <div class="link-label">
+                        📊 Your Private Dashboard
+                    </div>
+                    <div class="link-text" id="dashboardLink"></div>
+                    <button class="copy-btn" onclick="copyLink('dashboard')">Copy Link</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Create floating hearts
+        const heartBg = document.getElementById('heartBg');
+        const heartSymbols = ['💖', '💕', '💗', '💓', '💝', '💘'];
+        
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.className = 'heart';
+            heart.textContent = heartSymbols[Math.floor(Math.random() * heartSymbols.length)];
+            heart.style.left = Math.random() * 100 + '%';
+            heart.style.animationDelay = Math.random() * 8 + 's';
+            heart.style.fontSize = (Math.random() * 20 + 15) + 'px';
+            heartBg.appendChild(heart);
+            
+            setTimeout(() => heart.remove(), 8000);
+        }
+        
+        // Create hearts periodically
+        setInterval(createHeart, 500);
+        
+        // Initial hearts
+        for (let i = 0; i < 15; i++) {
+            setTimeout(createHeart, i * 300);
+        }
+
+        // Generate unique code
+        function generateUniqueCode() {
+            return 'v' + Date.now().toString(36) + Math.random().toString(36).substr(2, 9);
+        }
+
+        // Handle form submission
+        document.getElementById('generateForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const yourName = document.getElementById('yourName').value.trim();
+            const partnerName = document.getElementById('partnerName').value.trim();
+            
+            if (!yourName || !partnerName) {
+                alert('Please enter both names');
+                return;
+            }
+            
+            const uniqueCode = generateUniqueCode();
+            const baseUrl = window.location.origin + window.location.pathname.replace('index.html', '');
+            
+            const valentineUrl = `${baseUrl}love.html?code=${uniqueCode}&from=${encodeURIComponent(yourName)}&to=${encodeURIComponent(partnerName)}`;
+            const dashboardUrl = `${baseUrl}dashboard.html?code=${uniqueCode}&from=${encodeURIComponent(yourName)}&to=${encodeURIComponent(partnerName)}`;
+            
+            document.getElementById('valentineLink').textContent = valentineUrl;
+            document.getElementById('dashboardLink').textContent = dashboardUrl;
+            document.getElementById('linksContainer').style.display = 'block';
+        });
+
+        // Copy link function
+        function copyLink(type) {
+            const linkElement = type === 'valentine' 
+                ? document.getElementById('valentineLink')
+                : document.getElementById('dashboardLink');
+            
+            const link = linkElement.textContent;
+            
+            navigator.clipboard.writeText(link).then(() => {
+                const btn = event.target;
+                const originalText = btn.textContent;
+                btn.textContent = '✓ Copied!';
+                btn.classList.add('copied');
+                
+                setTimeout(() => {
+                    btn.textContent = originalText;
+                    btn.classList.remove('copied');
+                }, 2000);
+            }).catch(err => {
+                alert('Failed to copy. Please copy manually.');
+            });
+        }
+    </script>
+</body>
+</html>
